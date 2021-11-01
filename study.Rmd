@@ -1,0 +1,272 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+```{r}
+plot(cars)
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+```{r}
+JohnsFamily <-
+  list(
+    name = "John", 
+    age = 35,
+    spouse = list(
+      name = "Mary", 
+      age = 32),
+    children = list(
+      list(
+        name = "Bill", 
+        age = 5),
+      list(
+        name = "Jane", 
+        age = 3)
+    )
+  )
+```
+```{r}
+JohnsFamilyCopy <- JohnsFamily
+
+JohnsFamilyCopy[[1]] <- "Watson" 
+JohnsFamilyCopy[[1]]
+```
+```{r}
+JohnsFamilyCopy <- JohnsFamily
+JohnsFamilyCopy[["name"]] <- "Watson"
+JohnsFamilyCopy[["age"]] <- 37
+JohnsFamilyCopy
+```
+
+```{r}
+JohnsFamilyCopy[c(1,2)] <- 
+  list(name="Watson", age=37) 
+JohnsFamilyCopy[c(1,2)]
+```
+```{r}
+JohnsFamilyCopy <- JohnsFamily
+
+JohnsFamilyCopy[c("name","age")] <-
+  list(
+    name = "Watson",
+    age = 37
+  )
+JohnsFamilyCopy[c("name","age")]
+```
+```{r}
+JohnsFamilyCopy[c("name","age")] <- 
+  list(
+    "Dickens",
+    32
+  )
+JohnsFamilyCopy[c("name","age")]
+```
+```{r}
+JohnsFamilyCopy <- JohnsFamily
+JohnsFamilyCopy$spouse$age
+JohnsFamilyCopy$spouse[["age"]]
+33 -> JohnsFamilyCopy$spouse$age
+JohnsFamilyCopy$spouse[["age"]]
+
+JohnsFamilyCopy$children[[1]]$name = "Gary"
+JohnsFamilyCopy$children[[1]]$name
+```
+
+```{r}
+example1 <- c("John", "Mary", "Bill")
+example1[[4]] <- "Ken" 
+example1[[4]]
+# retrieve an non-existing element name "person4"
+example1[["person4"]] <- "Ken"
+# retrieve two non-existing element positions
+example1[c(7,8)] <- c("person7"="Jack", "Janem")
+example1
+```
+
+```{r}
+example1 <- c("John","Mary","Bill")
+c("Jack","person5"="Jonem")
+
+```
+
+```{r}
+example1[c(4,5)] <- c("Jack","person5"="Janem")
+example1
+```
+
+```{r}
+example1 <- c("John","Mary","Bill")
+example1[[4]] <-"Jack"
+example1[["person5"]] <- "Janem"
+example1
+```
+
+```{r}
+example1 <- c("John","Mary","Bill")
+example1[c("person4","person5")]
+example1[c("person4","person5")] <- c("Jack","Janem")
+example1[c("person4","person5")]
+
+```
+
+```{r}
+example1[c(7,8)] <-c("person7"="Jack","janem")
+example1
+```
+```{r}
+JohnsFamily <-
+  list(
+    name = "John", 
+    age = 35,
+    spouse = list(
+      name = "Mary", 
+      age = 32),
+    children = list(
+      list(
+        name = "Bill", 
+        age = 5),
+      list(
+        name = "Jane", 
+        age = 3)
+    )
+  )
+```
+
+```{r}
+JohnsFamilyCopy2 <- JohnsFamily
+# Add a new born 
+JohnsFamilyCopy2$children[[3]] <- 
+  list(name="Lisa", age=0) # $ is for list only
+```
+
+```{r}
+newBorn <- list(
+  name = "Lisa",
+  age = 0
+)
+```
+
+```{r}
+JohnsFamilyCopy2$children[[3]] <- newBorn
+JohnsFamilyCopy2$children[[3]] <- list(
+  name = "Lisa",
+  age = 0
+)
+# do name call on newBorn
+```
+**
+Ex 3.4
+```{r}
+JohnsFamilyCopy2 <- JohnsFamily
+JohnsFamilyCopy2$children[[2]]
+JohnsFamilyCopy2$children
+typeof(JohnsFamilyCopy2$children)
+
+list(
+  list(
+    name = "Jane",
+    age = 3
+    )
+)
+```
+
+```{r}
+JohnsFamilyCopy3 <- JohnsFamily
+JohnsFamilyCopy3$children[3] 
+c(list(name="lisa",age="0"))
+newBorn = c(list(name="lisa",
+                  age="0"))
+JohnsFamilyCopy3$children[c(3)] <- newBorn
+```
+
+```{r}
+JohnsFamilyCopy3 <- JohnsFamily
+JohnsFamilyCopy3$children[3] <-
+  list(
+            list(
+              name="Lisa" ,
+               age=0
+              )
+)
+JohnsFamilyCopy3
+#answer
+```
+
+```{r}
+JohnsFamilyCopy3$children[1]
+```
+### 3.4.2
+```{r}
+height <- c("001"=177, "002"=183, "003"=173)
+```
+```{r}
+rm(height)
+```
+```{r}
+height <- c("001"=177, "002"=183, "003"=173)
+rm(height)
+height[["001"]] <- 177
+height[["002"]] <- 183
+height[["003"]] <- 173
+```
+```{r}
+height <- numeric(0)
+```
+```{r}
+height[["001"]] <- 177
+height[["002"]] <- 183
+height[["003"]] <- 173
+```
+
+```{r}
+height
+```
+```{r}
+rm(height)
+height <- numeric()
+height[["001"]] <- 177
+height[["002"]] <- 183
+height[["003"]] <- 173
+```
+ 
+```{r}
+course1 <- 
+  list(
+    name="programming for data science",
+    credit=2
+  )
+course2 <- 
+  list(
+    name="accounting",
+    credit=3
+  )
+```
+ 
+```{r}
+course3 <-
+  list(
+    name="philosphy",
+    credit=2)
+```
+ 
+```{r}
+classSchedule <- list()
+```
+
+```{r}
+#yr108 semester 1
+classSchedule$yr108$semester1[[1]] <- course1
+classSchedule$yr108$semester1[[2]] <- course2
+#yr107 semester 2
+classSchedule$yr107$semester2[[1]] <- course3
+```
+
